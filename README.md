@@ -27,3 +27,11 @@ subprocess.run               0.0.8
 - The `engine.process(idx)` in line 98 takes the index of the list of filenames to process the video file
 - The methods used are robust and runs a real time, in video output
 - The threholds can be customized accordingly for better categorization in line the 14
+
+
+<br/>
+<br/>
+
+Opportunities to improve:
+
+These nethods considers all the content of a frame (including background), an improvement can be made by using methods that focusses on specific parts of the content, these methods also require manually setting the threshold
