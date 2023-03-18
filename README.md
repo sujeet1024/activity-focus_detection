@@ -34,4 +34,4 @@ subprocess.run               0.0.8
 
 Opportunities to improve:
 
-These nethods considers all the content of a frame (including background), an improvement can be made by using methods that focusses on specific parts of the content, these methods also require manually setting the threshold
+These methods considers all the content of a frame (including background), an improvement can be made by focussing on specifics of the content, also these methods require manually setting the threshold
