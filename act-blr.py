@@ -11,7 +11,7 @@ class Engine():
         self.hotspot_colors = {0: (0, 0, 255), 1: (255, 50, 50), 2: (50, 255, 50)}
         
         self.moving_averages = {k: None for k in self.keys}
-        self.thresholds = {"Hotspot": (0.2, 0.8), "Focus": 150}
+        self.thresholds = {"Hotspot": (0.15, 0.8), "Focus": 130}
     
     def get_avg_meta_data(self, meta_data):
         alpha = 0.15
@@ -72,6 +72,8 @@ class Engine():
         # self.video = cv2.VideoCapture(self.videos[video_id], 'API','FFMPEG')
         subprocess.Popen(f'ffmpeg -i {self.videos[video_id]} -vcodec copy -an -f mp4 toprocess.mp4')
         self.video = cv2.VideoCapture('toprocess.mp4')
+        self._fourcc = cv2.VideoWriter_fourcc(*'MP4V')
+        self._out = cv2.VideoWriter('brooklyn99.mp4', self._fourcc, 30.0, (640, 480))
         prev_frame = None
         
         while True:
@@ -85,12 +87,20 @@ class Engine():
                 meta_data = self.apply_thresholds(meta_data)
                 
                 prev_frame = frame
+                
+                out_frame = self.display_meta_data(frame, meta_data)
+                self._out.write(out_frame)
 
                 cv2.imshow("video", self.display_meta_data(frame, meta_data))
                 if cv2.waitKey(1) & 0xFF == ord("q"):
                     break
             else:
                 break
+        self.video.release()
+
+        self._out.release()
+
+        cv2.destroyAllWindows()
         
         
 # engine = Engine("video1.mp4", "video2.mp4")
