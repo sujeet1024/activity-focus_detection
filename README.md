@@ -28,6 +28,8 @@ subprocess.run               0.0.8
 - The methods used are robust and runs a real time, in video output
 - The threholds can be customized accordingly for better categorization in line the 14
 
+This works the best with the live camera, you may use `0` as input to `cv2.VideoCapture()` for same
+
 
 <br/>
 <br/>
